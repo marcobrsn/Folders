@@ -3,38 +3,38 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0f172a">
+  <meta name="theme-color" content="#404040">
   <meta name="description" content="A simple, mobile-first guide to things to do in New York City.">
   <title>NYC — What should we do?</title>
   <style>
-    :root{--bg:#f7f7f5;--card:#fff;--ink:#111827;--muted:#667085;--line:#e7e7e2;--accent:#e11d48;--dark:#0f172a}
+    :root{--bg:#F5F5F5;--card:#fff;--ink:#404040;--muted:#6b6b6b;--line:#dddddd;--accent:#0563C1;--dark:#404040;--soft:#F2F2F2}
     *{box-sizing:border-box} html{scroll-behavior:smooth}
     body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.45}
     .wrap{width:min(720px,100%);margin:auto;padding:0 18px 48px}
     header{background:var(--dark);color:white;padding:52px 18px 30px;border-radius:0 0 28px 28px;margin:0 -18px 24px}
-    .eyebrow{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#fda4af}
+    .eyebrow{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#9ec9ef}
     h1{font-size:clamp(38px,11vw,64px);line-height:.95;letter-spacing:-.055em;margin:10px 0 14px}
-    .intro{font-size:17px;color:#cbd5e1;max-width:560px;margin:0}
+    .intro{font-size:17px;color:#eeeeee;max-width:560px;margin:0}
     .chips{display:flex;gap:8px;overflow:auto;padding:2px 0 8px;scrollbar-width:none}
     .chips::-webkit-scrollbar{display:none}
     .chip{flex:0 0 auto;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:9px 14px;font-weight:700;font-size:14px;color:var(--ink);cursor:pointer}
-    .chip.active{background:var(--dark);color:#fff;border-color:var(--dark)}
+    .chip.active{background:var(--accent);color:#fff;border-color:var(--accent)}
     section{margin-top:28px}
     .section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:12px}
     h2{font-size:24px;letter-spacing:-.03em;margin:0}
     .count{font-size:13px;color:var(--muted)}
     .grid{display:grid;gap:12px}
-    .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:17px;box-shadow:0 2px 10px rgba(15,23,42,.035)}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:17px;box-shadow:0 2px 10px rgba(64,64,64,.05)}
     .top{display:flex;gap:12px;align-items:flex-start}
-    .icon{width:42px;height:42px;display:grid;place-items:center;border-radius:13px;background:#f1f5f9;font-size:21px;flex:0 0 auto}
+    .icon{width:42px;height:42px;display:grid;place-items:center;border-radius:13px;background:var(--soft);font-size:21px;flex:0 0 auto}
     h3{margin:0;font-size:18px;letter-spacing:-.02em}
     .tag{display:inline-block;margin-top:4px;font-size:12px;font-weight:800;color:var(--accent)}
-    .card p{margin:11px 0 0;color:#475467;font-size:14px}
+    .card p{margin:11px 0 0;color:#555;font-size:14px}
     .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-    .meta span{font-size:12px;color:#667085;background:#f8fafc;border-radius:999px;padding:5px 8px}
-    .plan{background:#fff1f2;border:1px solid #fecdd3;border-radius:20px;padding:18px}
+    .meta span{font-size:12px;color:#666;background:var(--soft);border-radius:999px;padding:5px 8px}
+    .plan{background:var(--soft);border:1px solid #d5d5d5;border-radius:20px;padding:18px}
     .plan strong{display:block;font-size:18px;margin-bottom:5px}
-    .plan p{margin:0;color:#5b5360;font-size:14px}
+    .plan p{margin:0;color:#555;font-size:14px}
     footer{padding:32px 4px 0;color:var(--muted);font-size:12px;text-align:center}
     @media(min-width:620px){.grid{grid-template-columns:1fr 1fr}}
   </style>
@@ -46,117 +46,33 @@
       <h1>What should we do?</h1>
       <p class="intro">A shortlist of NYC things worth leaving the apartment for — from classic New York to great food, neighborhoods, views and rainy-day plans.</p>
     </header>
-
     <nav class="chips" aria-label="Categories">
-      <button class="chip active" data-filter="all">All</button>
-      <button class="chip" data-filter="classic">Classic</button>
-      <button class="chip" data-filter="food">Food & drinks</button>
-      <button class="chip" data-filter="neighborhood">Neighborhoods</button>
-      <button class="chip" data-filter="culture">Culture</button>
-      <button class="chip" data-filter="outdoors">Outdoors</button>
-      <button class="chip" data-filter="rain">Rainy day</button>
+      <button class="chip active" data-filter="all">All</button><button class="chip" data-filter="classic">Classic</button><button class="chip" data-filter="food">Food & drinks</button><button class="chip" data-filter="neighborhood">Neighborhoods</button><button class="chip" data-filter="culture">Culture</button><button class="chip" data-filter="outdoors">Outdoors</button><button class="chip" data-filter="rain">Rainy day</button>
     </nav>
-
     <section>
       <div class="section-head"><h2>Start here</h2><span class="count" id="count"></span></div>
       <div class="grid" id="cards">
-        <article class="card" data-cat="classic outdoors">
-          <div class="top"><div class="icon">🌉</div><div><h3>Walk the Brooklyn Bridge</h3><span class="tag">Classic</span></div></div>
-          <p>Go late afternoon, walk toward Brooklyn, then continue into DUMBO for the skyline and a drink.</p>
-          <div class="meta"><span>1–2 hrs</span><span>Best at sunset</span></div>
-        </article>
-
-        <article class="card" data-cat="neighborhood food">
-          <div class="top"><div class="icon">🥯</div><div><h3>Lower East Side food crawl</h3><span class="tag">Food</span></div></div>
-          <p>Katz's → Russ & Daughters → a cocktail bar. Easy to turn into a full evening around Orchard, Ludlow and Rivington.</p>
-          <div class="meta"><span>2–4 hrs</span><span>Casual</span></div>
-        </article>
-
-        <article class="card" data-cat="culture rain">
-          <div class="top"><div class="icon">🖼️</div><div><h3>MoMA + West Village</h3><span class="tag">Culture</span></div></div>
-          <p>Do the museum first, then walk down Fifth and finish with dinner or drinks around Greenwich Village.</p>
-          <div class="meta"><span>Half day</span><span>Great in rain</span></div>
-        </article>
-
-        <article class="card" data-cat="outdoors neighborhood">
-          <div class="top"><div class="icon">🌳</div><div><h3>Central Park afternoon</h3><span class="tag">Outdoors</span></div></div>
-          <p>Enter around the Upper West Side, wander through the park, then head toward the Upper East Side for dinner.</p>
-          <div class="meta"><span>2–3 hrs</span><span>Low effort</span></div>
-        </article>
-
-        <article class="card" data-cat="classic culture">
-          <div class="top"><div class="icon">🎭</div><div><h3>Broadway night</h3><span class="tag">Classic</span></div></div>
-          <p>Make it an event: early dinner, show, then one drink around Hell's Kitchen or Koreatown.</p>
-          <div class="meta"><span>Evening</span><span>Book ahead</span></div>
-        </article>
-
-        <article class="card" data-cat="neighborhood food">
-          <div class="top"><div class="icon">🍸</div><div><h3>West Village evening</h3><span class="tag">Neighborhood</span></div></div>
-          <p>Washington Square → Bleecker → MacDougal → a cozy cocktail bar. One of the easiest great NYC nights.</p>
-          <div class="meta"><span>2–4 hrs</span><span>Date night</span></div>
-        </article>
-
-        <article class="card" data-cat="outdoors classic">
-          <div class="top"><div class="icon">⛴️</div><div><h3>Free Staten Island ferry</h3><span class="tag">Views</span></div></div>
-          <p>Simple way to get excellent Statue of Liberty and Lower Manhattan views without paying for a cruise.</p>
-          <div class="meta"><span>1–2 hrs</span><span>Free</span></div>
-        </article>
-
-        <article class="card" data-cat="culture rain">
-          <div class="top"><div class="icon">🦖</div><div><h3>American Museum of Natural History</h3><span class="tag">Rainy day</span></div></div>
-          <p>Perfect when the weather is bad. Pick a few sections rather than trying to see the whole museum.</p>
-          <div class="meta"><span>2–4 hrs</span><span>Upper West Side</span></div>
-        </article>
-
-        <article class="card" data-cat="neighborhood food">
-          <div class="top"><div class="icon">🍜</div><div><h3>Chinatown + Nolita</h3><span class="tag">Food</span></div></div>
-          <p>Dim sum or noodles, wander through Chinatown, then move north for coffee, shopping and drinks in Nolita.</p>
-          <div class="meta"><span>Half day</span><span>Walkable</span></div>
-        </article>
-
-        <article class="card" data-cat="classic outdoors">
-          <div class="top"><div class="icon">🏙️</div><div><h3>Top of the Rock at golden hour</h3><span class="tag">Views</span></div></div>
-          <p>One of the best ways to see Manhattan, especially with the Empire State Building in the frame.</p>
-          <div class="meta"><span>1–2 hrs</span><span>Reserve</span></div>
-        </article>
-
-        <article class="card" data-cat="neighborhood outdoors">
-          <div class="top"><div class="icon">🌊</div><div><h3>West Side walk</h3><span class="tag">Outdoors</span></div></div>
-          <p>Start at Hudson Yards, walk the High Line, continue through Chelsea Market and finish at the West Village.</p>
-          <div class="meta"><span>2–4 hrs</span><span>Easy</span></div>
-        </article>
-
-        <article class="card" data-cat="food culture rain">
-          <div class="top"><div class="icon">🍷</div><div><h3>Tribeca dinner + wine</h3><span class="tag">Food & drinks</span></div></div>
-          <p>Good choice for a slower evening: explore the cobblestone streets, have dinner, then find a serious wine bar.</p>
-          <div class="meta"><span>Date night</span><span>Rain-friendly</span></div>
-        </article>
+        <article class="card" data-cat="classic outdoors"><div class="top"><div class="icon">🌉</div><div><h3>Walk the Brooklyn Bridge</h3><span class="tag">Classic</span></div></div><p>Go late afternoon, walk toward Brooklyn, then continue into DUMBO for the skyline and a drink.</p><div class="meta"><span>1–2 hrs</span><span>Best at sunset</span></div></article>
+        <article class="card" data-cat="neighborhood food"><div class="top"><div class="icon">🥯</div><div><h3>Lower East Side food crawl</h3><span class="tag">Food</span></div></div><p>Katz's → Russ & Daughters → a cocktail bar. Easy to turn into a full evening around Orchard, Ludlow and Rivington.</p><div class="meta"><span>2–4 hrs</span><span>Casual</span></div></article>
+        <article class="card" data-cat="culture rain"><div class="top"><div class="icon">🖼️</div><div><h3>MoMA + West Village</h3><span class="tag">Culture</span></div></div><p>Do the museum first, then walk down Fifth and finish with dinner or drinks around Greenwich Village.</p><div class="meta"><span>Half day</span><span>Great in rain</span></div></article>
+        <article class="card" data-cat="outdoors neighborhood"><div class="top"><div class="icon">🌳</div><div><h3>Central Park afternoon</h3><span class="tag">Outdoors</span></div></div><p>Enter around the Upper West Side, wander through the park, then head toward the Upper East Side for dinner.</p><div class="meta"><span>2–3 hrs</span><span>Low effort</span></div></article>
+        <article class="card" data-cat="classic culture"><div class="top"><div class="icon">🎭</div><div><h3>Broadway night</h3><span class="tag">Classic</span></div></div><p>Make it an event: early dinner, show, then one drink around Hell's Kitchen or Koreatown.</p><div class="meta"><span>Evening</span><span>Book ahead</span></div></article>
+        <article class="card" data-cat="neighborhood food"><div class="top"><div class="icon">🍸</div><div><h3>West Village evening</h3><span class="tag">Neighborhood</span></div></div><p>Washington Square → Bleecker → MacDougal → a cozy cocktail bar. One of the easiest great NYC nights.</p><div class="meta"><span>2–4 hrs</span><span>Date night</span></div></article>
+        <article class="card" data-cat="outdoors classic"><div class="top"><div class="icon">⛴️</div><div><h3>Free Staten Island ferry</h3><span class="tag">Views</span></div></div><p>Simple way to get excellent Statue of Liberty and Lower Manhattan views without paying for a cruise.</p><div class="meta"><span>1–2 hrs</span><span>Free</span></div></article>
+        <article class="card" data-cat="culture rain"><div class="top"><div class="icon">🦖</div><div><h3>American Museum of Natural History</h3><span class="tag">Rainy day</span></div></div><p>Perfect when the weather is bad. Pick a few sections rather than trying to see the whole museum.</p><div class="meta"><span>2–4 hrs</span><span>Upper West Side</span></div></article>
+        <article class="card" data-cat="neighborhood food"><div class="top"><div class="icon">🍜</div><div><h3>Chinatown + Nolita</h3><span class="tag">Food</span></div></div><p>Dim sum or noodles, wander through Chinatown, then move north for coffee, shopping and drinks in Nolita.</p><div class="meta"><span>Half day</span><span>Walkable</span></div></article>
+        <article class="card" data-cat="classic outdoors"><div class="top"><div class="icon">🏙️</div><div><h3>Top of the Rock at golden hour</h3><span class="tag">Views</span></div></div><p>One of the best ways to see Manhattan, especially with the Empire State Building in the frame.</p><div class="meta"><span>1–2 hrs</span><span>Reserve</span></div></article>
+        <article class="card" data-cat="neighborhood outdoors"><div class="top"><div class="icon">🌊</div><div><h3>West Side walk</h3><span class="tag">Outdoors</span></div></div><p>Start at Hudson Yards, walk the High Line, continue through Chelsea Market and finish at the West Village.</p><div class="meta"><span>2–4 hrs</span><span>Easy</span></div></article>
+        <article class="card" data-cat="food culture rain"><div class="top"><div class="icon">🍷</div><div><h3>Tribeca dinner + wine</h3><span class="tag">Food & drinks</span></div></div><p>Good choice for a slower evening: explore the cobblestone streets, have dinner, then find a serious wine bar.</p><div class="meta"><span>Date night</span><span>Rain-friendly</span></div></article>
       </div>
     </section>
-
-    <section class="plan">
-      <strong>Pick a mood</strong>
-      <p><b>2 hours:</b> Brooklyn Bridge → DUMBO. &nbsp; <b>Half day:</b> High Line → Chelsea Market → West Village. &nbsp; <b>Rain:</b> MoMA → dinner downtown.</p>
-    </section>
-
+    <section class="plan"><strong>Pick a mood</strong><p><b>2 hours:</b> Brooklyn Bridge → DUMBO. &nbsp; <b>Half day:</b> High Line → Chelsea Market → West Village. &nbsp; <b>Rain:</b> MoMA → dinner downtown.</p></section>
     <footer>Made for NYC days & nights · Save this page and send it to whoever you're exploring with.</footer>
   </main>
-
   <script>
-    const buttons=[...document.querySelectorAll('.chip')];
-    const cards=[...document.querySelectorAll('.card')];
-    const count=document.getElementById('count');
-    function filter(cat){
-      let visible=0;
-      cards.forEach(c=>{
-        const show=cat==='all'||c.dataset.cat.split(' ').includes(cat);
-        c.hidden=!show;if(show) visible++;
-      });
-      count.textContent=visible+' ideas';
-      buttons.forEach(b=>b.classList.toggle('active',b.dataset.filter===cat));
-    }
-    buttons.forEach(b=>b.addEventListener('click',()=>filter(b.dataset.filter)));
-    filter('all');
+    const buttons=[...document.querySelectorAll('.chip')],cards=[...document.querySelectorAll('.card')],count=document.getElementById('count');
+    function filter(cat){let visible=0;cards.forEach(c=>{const show=cat==='all'||c.dataset.cat.split(' ').includes(cat);c.hidden=!show;if(show)visible++});count.textContent=visible+' ideas';buttons.forEach(b=>b.classList.toggle('active',b.dataset.filter===cat))}
+    buttons.forEach(b=>b.addEventListener('click',()=>filter(b.dataset.filter)));filter('all');
   </script>
 </body>
 </html>
